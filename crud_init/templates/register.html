@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block titulo %}Concesionario Register{% endblock titulo %}</title>
+        <meta name="description" content="loging"/>
+        <meta name="keywords" content="php, form, require_once" />
+        <meta name="author" content="Antonio José Lojo Ojeda" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--My font-->
+
+
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+    </head> 
+    <body>
+        {% if error %}
+        <script>
+            alert('The user trying to register\nPlease register a new one');
+        </script>
+        {% endif %}
+    <header>
+        <h1>Concesionario Register</h1>
+    </header>
+    <main>
+        <h2>Register</h2>
+        <form class="formulario" action="" method="POST" enctype="multipart/form-data" autocomplete="on">
+            {% csrf_token %}
+            {{register_form}}
+            <button class="button" type="submit" value="enviar" title="Entrar">Register</button>
+        </form>
+        <h3>To go to Log in please check here</h3>
+        <a class="button" href="{% url 'index' %}">Log in</a>
+    </main>
+    <footer class='footerFixed'>
+        <p>page coded by <a href="https://github.com/ajloinformatico" target="_blank" title="Github page">ajloinformatico.</a>
+            I´m open source.
+            Copyright © 2020 INFOLOJO</p>
+    </footer>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block titulo %}Concesionario Loging{% endblock titulo %}</title>
+        <meta name="description" content="loging"/>
+        <meta name="keywords" content="php, form, require_once" />
+        <meta name="author" content="Antonio José Lojo Ojeda" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--My font-->
+
+
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+    </head>
+    {% block content %}
+    <body>
+        {% if error %}
+        <script>
+            alert('The user does not exist\nPlease register a new one');
+        </script>
+        {% endif %}
+        <header>
+            {% block title_header %}<h1>Concesionario Log in</h1>{% endblock title_header %}
+        </header>
+        <main style="text-align: center;">
+
+            <h2>{% block title_main %}Loging{% endblock title_main %}</h2>
+
+            <form class="formulario" action="" method="POST" enctype="multipart/form-data" autocomplete="on">
+                {% csrf_token %} <!--Sin el csrf token no funciona-->
+                {{loging_form}}
+                <!--
+                <input type="hidden" name="oculto" value="loging" />
+                <label for="nombre">Name or Mail: </label>
+                <input type="text" id="nombre" name="nombre" title="Introduzca un nombre"  placeholder="Introduzca su nombre" required/>
+                
+                <label for="contrasena">Password: </label>
+                <input type="password" id="contrasena" name="contrasena" title="Introduzca su contraseña" placeholder="Introduzca su contraseña" required />
+
+                -->
+                 <button class="button" type="submit" value="enviar" title="Entrar">Log in</button>
+            </form>
+            <h3>To go to Sign in in please click here</h3>
+            {% block button_log_reg %}<a class="button" href="{% url 'register' %}">Sign in</a>{% endblock button_log_reg %}
+
+        </main>
+        <footer class='footerFixed'>
+        <p>page coded by <a href="https://github.com/ajloinformatico" target="_blank" title="Github page">ajloinformatico.</a>
+            I´m open source.
+            Copyright © 2020 INFOLOJO</p>
+        </footer>
+        {% endblock content %}
+    </body>
+</html>
+

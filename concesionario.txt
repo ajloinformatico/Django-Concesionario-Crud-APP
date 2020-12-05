@@ -1,0 +1,160 @@
+Uso el entorno virtual que hay en documentos
+Creo en el disco en la carpeta de la aplicación
+Arranco
+
+Django-admin startproject crud_init --> Arranco el proyecto
+
+Pip3 install mysqlclient --> Instalo mysql-client
+
+Configuración mysql
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'concesionario',
+        'USER': 'root',
+        'PASSWORD': 'Antoniojose@10',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    }
+
+Crear paquete de aplicaciones (paquete lleva aplicaciones)
+
+Dentro de el paquete de aplicaciones creo la aplicación de crud
+
+
+ > django-admin stratapp concesionario.
+
+Hacer modelos de las tablas de la base de datos en concesionario
+
+from enum import Enum                                                                                                      
+from django.db import models                                                                                               
+                                                                                                                           
+                                                                                                                           
+# Models for my usuars                                                                                                     
+class User(models.Model):                                                                                                  
+    """                                                                                                                    
+    Users Class model                                                                                                      
+    """                                                                                                                    
+    id = models.AutoField(primary_key=True)                                                                                
+    usurname = models.CharField(max_length=15)                                                                             
+    email = models.EmailField(max_length=70)                                                                               
+    password = models.CharField(max_length=25)                                                                             
+                                                                                                                           
+    def __str__(self):                                                                                                     
+        return str(self.id) + " " + str(self.usurname) + " " + str(self.email) + " " + str(self.password)                  
+                                                                                                                           
+                                                                                                                           
+class Car(models.Model):                                                                                                   
+    """                                                                                                                    
+    Car Class model                                                                                                        
+    """                                                                                                                    
+    class DOORS(Enum):                                                                                                     
+        """                                                                                                                
+        Class for choice field                                                                                             
+        resource = https://www.merixstudio.com/blog/django-models-declaring-list-available-choices-right-way/              
+        """                                                                                                                
+        one = ('1', '1')                                                                                                   
+        two = ('2', '2')                                                                                                   
+        three = ('3', '3')                                                                                                 
+        four = ('4', '4')                                                                                                  
+        six = ('6', '5')                                                                                                   
+                                                                                                                           
+        # Atribute Getter                                                                                                  
+        @classmethod                                                                                                       
+        def get_value(cls, member):                                                                                        
+            return member.value[0]                                                                                         
+                                                                                                                           
+    class COLORS(Enum):                                                                                                    
+        """                                                                                                                
+        Class for Possible colors                                                                                          
+        """                                                                                                                
+        black = ('1', 'black')                                                                                             
+        blue = ('2', 'blue')                                                                                               
+        white = ('3', 'white')                                                                                             
+        red = ('4', 'red')                                                                                                 
+        grey = ('5', 'grey')                                                                                               
+        yellow = ('6', 'yellow')                                                                                           
+                                                                                                                           
+        # Atribute Getter                                                                                                  
+        @classmethod                                                                                                       
+        def get_value(cls, member):                                                                                        
+            return member.value[0]                                                                                         
+                                                                                                                           
+    id = models.AutoField(primary_key=True)                                                                                
+    matr = models.CharField(max_length=7).unique                                                                           
+    price = models.DecimalField(default=10000, max_digits=7, decimal_places=2)  # max value                                
+    marc = models.CharField(max_length=15)                                                                                 
+    model = models.CharField(max_length=15)                                                                                
+    n_doors = models.CharField(                                                                                            
+        max_length=32,                                                                                                     
+        choices=[x.value for x in DOORS],  # Doors loop as choices                                                         
+        default=DOORS.get_value(DOORS.four),  # Default                                                                    
+    )                                                                                                                      
+    colors = models.CharField(                                                                                             
+        max_length=32,                                                                                                     
+        # ITS MUST BE A TUPLE                                                                                              
+        choices=[x.value for x in COLORS],  # Doors loop as choices                                                        
+        default=COLORS.get_value(COLORS.black),  # Default                                                                 
+    )                                                                                                                      
+    age = models.DateField()                                                                                               
+                                                                                                                           
+    def __str__(self):                                                                                                     
+        return str(self.id) + " " + str(self.matr) + " " + str(self.price) + " " + str(self.marc) + " " + str(self.model) \
+               + " " + str(self.n_doors) + " " + str(self.colors) + " " + str(self.age)                                    
+                                                                                                                           
+                                                                                                                           
+                                                                                                                           
+                                                                                                                           
+                                                                                                                           
+Nos dice que guay                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                             
+Python3 manage.py migrate --> Envia la info a la bbdd
+Comprobamos que es así con workbench o con admin
+
+
+
+
+Ya podemos ir trabajando con urls y vistas así que arrancó django
+Python3 manage.py rumserver
+
+http://127.0.0.1:8000/ --> index
+
+http://127.0.0.1:8000/admin --> administrador
+
+Para crear el perfil de administrador 
+python3 manase.py createsuperuser
+
+> root > pestillo
+
+(init) MBP-de-Antonio:crud_init antoniojoselojoojeda$ python3 manage.py createsuperuser
+Username (leave blank to use 'antoniojoselojoojeda'): root
+Email address: infolojo@infolojo.es
+Password: 
+Password (again): 
+Superuser created successfully.
+(init) MBP-de-Antonio:crud_init antoniojoselojoojeda$ 
+
+
+En http://127.0.0.1:8000/admin -> Se pueden ver las tablas edito
+Con info por defecto
+
+PERO SOLO APARECEN GRUPOS Y USUARIOS 
+PARA QUE APAREZCAN LAS NUESTRAS HAY QUE AGREGARLAS A ADMIN EN EL 
+admin.py de la aplicación
+
+from django.contrib import admin
+from .models import User, Car
+
+# Here I have to import my models to add to /admin
+admin.site.register(User)
+admin.site.register(Car)
+
+Ahora si aparecen en /admin 
+Edito con datos por defecto
+
+
+
+
+
+

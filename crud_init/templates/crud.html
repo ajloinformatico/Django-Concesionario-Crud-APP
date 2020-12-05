@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block titulo %}Concesionario Crud{% endblock titulo %}</title>
+        <meta name="description" content="loging"/>
+        <meta name="keywords" content="php, form, require_once" />
+        <meta name="author" content="Antonio José Lojo Ojeda" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--My font-->
+
+
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+    </head> 
+    <body>
+    <header id='heder_crud'>
+        <h1>Concesionario Crud</h1>
+        <a href="{% url 'index' %}" alt="link to logut" title="logout"><i class="fas fa-sign-out-alt fa-3x"></i></a>
+    </header>
+    <!--Message for inform about delete-->
+    {% if delete %}
+        <script>
+            alert('Record has been successfully removed')
+        </script>
+    {% endif %}
+    <main class="main-crud">
+        <center>
+        <table>
+            <thead>
+                <tr>
+                    <th>Matricula</th>
+                    <th>Price</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>doors</th>
+                    <th>colors</th>
+                    <th>age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in cars %}
+                <tr>
+                    <td>{{car.matr}}</td>
+                    <td>{{car.price}}</td>
+                    <td>{{car.marc}}</td>
+                    <td>{{car.model}}</td>
+                    <td>{{car.n_doors}}</td>
+                    <td>{{car.colors}}</td>
+                    <td>{{car.age}}</td>
+                    <td><a href="{% url 'edit_car' car.id %}" alt="edit car" title="edit car"><i class="fas fa-edit fa-2x"></i></a>  <a href="{% url 'delete_car' car.id %}"><i class="far fa-trash-alt fa-2x"></i></a></td>
+                </tr>
+                {% endfor %}
+               
+            </tbody>
+        </table>
+        </center>
+        <a href="{% url 'add_car' %}"><i class="far fa-plus-square fa-2x"></i></a>
+    </main>
+    <footer class='footerFixed'>
+        <p>page coded by <a href="https://github.com/ajloinformatico" target="_blank" title="Github page">ajloinformatico.</a>
+            I´m open source.
+            Copyright © 2020 INFOLOJO</p>
+    </footer>
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>
+    </body>
+</html>

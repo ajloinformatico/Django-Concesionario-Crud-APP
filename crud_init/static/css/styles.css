@@ -1,0 +1,159 @@
+:root{
+    --color-loging: #6fe5f2;
+    --font-common: 'Noto Sans JP', sans-serif;
+    --color-header: #0054ae;
+    --size-little-bigger: 13pt;
+
+     /*Efectos transition emñaces*/
+    /*menu*/
+    --mouse-is-over-menu: linear 0.2s;
+    --mouse-is-hover-menu:color  0.2s linear 0.2s;
+
+    /*elementos normales*/
+    --mouse-is-over-normal: linear 0.1s;
+    --mouse-is-hover-mormal:color  0.1s linear 0.1s;
+
+    /*color fondo del enlace*/
+    --color-yellow: #ffbe47;
+
+    /*Fonts*/
+
+
+}
+html{
+    background-color: var(--color-loging);
+}
+body{
+    min-width: 350px;
+    font-family: var(--font-common);
+    text-align: center;
+    margin: 0;
+ 
+}
+header{
+    width: 100%;
+    height: 90px;
+    background-color: var(--color-header);
+    color: white;
+    display: inline-block;
+    overflow: hidden;
+    padding-top: 1em;
+}
+
+#heder_crud{
+    display: inline-flex;
+    flex-direction: row;   
+    justify-content: space-between;
+    
+    align-items: baseline;
+}
+#header_crud>a, i{
+    margin-top: 2em;
+}
+
+
+
+/*Base href*/
+a {
+    text-decoration: none;
+}
+
+
+.button{
+    background-color: var(--color-yellow);
+    color: black;
+    font-weight: bolder;
+    padding: .5em;
+    transition: var(--mouse-is-over-normal);
+}
+.button:hover{
+    transition: var(--mouse-is-hover-mormal);
+    color:white;
+    background-color: #633c05;
+
+}
+
+main{
+    width: 90%;
+    margin: 0 auto; /*Centra contenido*/
+}
+
+form{
+    background-color: #00000038;
+    display: block;
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 80%;
+    margin: 0 auto;
+}
+form>*{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+form>input{
+    margin-top: .5em;
+    margin-bottom: 2em;
+}
+
+/*errors*/
+ul li::marker{
+    list-style: none;
+    color: red;
+}
+
+/*table*/
+.main-crud{
+    background-color: #00000046;
+    margin-top: 5em;
+    width:70%;
+    padding-bottom: 1em;
+}
+
+table{
+   padding-top: 1em;
+  
+}
+table>thead>tr>th{
+    padding: 1em;
+}
+table>tbody>tr>td{
+    padding: 1em;
+}
+
+
+
+
+
+
+/*footer*/
+footer{
+    height: 100px;
+    width: 100%;
+    background-color: var(--color-header);
+    color: white;
+}
+footer>*{
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+footer>p>a{
+    color: black;
+    font-weight: bolder;
+    font-size: var(--size-little-bigger);
+
+    transition: var(--mouse-is-over-normal);
+
+}
+footer>p>a:hover{
+    transition: var(--mouse-is-hover-mormal);
+    color: white;
+}
+
+/*For footer fixeds*/
+.footerFixed{
+    position: absolute;
+    bottom: 0;
+  }
