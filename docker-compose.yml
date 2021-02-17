@@ -1,0 +1,35 @@
+version: '3.0'
+
+services:
+  concesionario:
+    image: python:3.7
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./debian:/home
+
+  db:
+    image: mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d/      
+    environment:
+      MYSQL_DATABASE: concesionario
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pestillo
+      MYSQL_ROOT_PASSWORD: pestillo
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRARY=1
+
+    
