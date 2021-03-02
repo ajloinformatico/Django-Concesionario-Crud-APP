@@ -5,7 +5,28 @@ Registrate, haz login y controla el crud de un
 concesionario, agregando, modificando y eliminado vehículos
 
 
-#RUN
+#RUN WITH ENV
+Para arrancar el proyecto desde env (o en local)
+ ### Run env
+_Abre un terminal y ejecuta_
+```
+source /debain/env-concesionario/bin/activate
+```
+ ### Seeder
+_Dirigite a ***/debian/crud_init*** y ejecuta_
+```
+python3 manage.py migrate
+```
+### Run App
+```
+python3 manage.py runserver
+```
+### App on localhost
+```
+http://localhost:8000
+```
+
+#RUN WITH DOCKER
 Para arrancarla necesitarás tener docker instalado.
 Y una termianal sobre el repositorio
 ### Build image and run containers
