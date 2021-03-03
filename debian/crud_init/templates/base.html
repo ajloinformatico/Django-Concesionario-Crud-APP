@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={% block description %}{% endblock description %}/>
+    <meta name="keywords" content="Django,crud,concesionatio"/>
+    <meta name="author" content="Antonio José Lojo Ojeda" />
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}" type="text/css">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <header>
+    {% block header %}
+        <h1>Concesionario Crud<h1>
+    {% endblock header %}
+    </header>
+    <main>
+   {% block contenido %} 
+   {% endblock contenido %}
+    </main>
+    <footer>
+    <p>Web app coded by <a 
+        href="https://www.infolojo.es"
+        target="_blank"
+        title="go to my website">
+        INFOLOJO 
+    </a>🧑‍💻 find more about me at <a
+        href="https://github.com/ajloinformatico"
+        target="blank"
+        title="Github page">
+        AJLOINFORMATICO
+    </a>Im open source just Enjoy it 🍺 ☕
+    </p>
+    </footer>
+</body>
+</html>
