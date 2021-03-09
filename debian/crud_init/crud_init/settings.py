@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 # Directorio de sitios estaticos
 STATICFILES_DIRS = [
-    "/Volumes/hola/2ºdaw/DES/tema2/DJANGO/CrudCoches/crud_init/static",
+    BASE_DIR / "static",
 ]
 
 
